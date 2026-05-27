@@ -1,0 +1,18 @@
+# Claude / Cowork internal files
+CLAUDE.md
+memory/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python server
+__pycache__/
+*.pyc

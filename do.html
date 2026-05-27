@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>測定機器 | 南越製作所</title>
+  <meta name="description" content="南越製作所の保有測定機器。東京精密 XYZAX SP600A 三次元測定機、ミツトヨ Quick Vision Active 画像測定機の詳細仕様をご紹介します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --active-color: var(--teal);
+      --active-border: var(--teal-mid);
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #0d5c56 0%, #052624 100%);
+    }
+
+    .page-hero .breadcrumb,
+    .page-hero .breadcrumb a {
+      color: #81e6d9;
+    }
+
+    .page-hero h1 .green {
+      color: #5eead4;
+    }
+
+    .hero-crosshair {
+      position: absolute;
+      right: 48px;
+      bottom: 20px;
+      width: 180px;
+      height: 180px;
+      opacity: 0.12;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      padding: 12px 24px;
+      border-radius: 4px;
+      margin-top: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .hero-badge .desc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .8);
+      line-height: 1.5;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      padding: 80px 48px;
+    }
+
+    /* ===== CARD 1 & 2: XYZAX SP600A / Mitutoyo ===== */
+    .measure-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      margin-bottom: 56px;
+      box-shadow: 0 4px 20px -8px rgba(13, 27, 42, .05);
+    }
+
+    .mc-img {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      background: var(--ink);
+    }
+
+    .mc-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mc-img-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #062a2a, #0a3f3f);
+    }
+
+    .mc-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(13, 27, 42, .4));
+    }
+
+    .mc-brand-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 2px;
+      font-weight: 700;
+      letter-spacing: .15em;
+    }
+
+    .tag-accretech {
+      background: #e05625;
+    }
+
+    .tag-mitutoyo {
+      background: #ff6b35;
+    }
+
+    .mc-type-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: .05em;
+      z-index: 10;
+    }
+
+    .mc-spec-side {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mc-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--teal-mid);
+      letter-spacing: .2em;
+      margin-bottom: 8px;
+    }
+
+    .mc-model {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .mc-maker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--steel);
+      letter-spacing: .1em;
+      margin-bottom: 24px;
+    }
+
+    .accuracy-chip {
+      background: var(--teal-light);
+      border-left: 3px solid var(--teal-mid);
+      padding: 12px 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      border-radius: 2px;
+      align-self: flex-start;
+    }
+
+    .accuracy-chip .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .accuracy-chip .lbl {
+      font-size: 10px;
+      color: var(--teal);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .axis-section {
+      margin-bottom: 32px;
+    }
+
+    .axis-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--steel);
+      letter-spacing: .15em;
+      margin-bottom: 16px;
+    }
+
+    .axis-row {
+      display: grid;
+      grid-template-columns: 20px 1fr 60px;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .axis-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .axis-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal-mid);
+    }
+
+    .axis-bg {
+      height: 4px;
+      background: rgba(13, 27, 42, .06);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .axis-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--teal-mid);
+      border-radius: 2px;
+    }
+
+    .axis-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--steel);
+      text-align: right;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+      margin-bottom: 36px;
+    }
+
+    .spec-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .spec-cell.full {
+      grid-column: span 2;
+    }
+
+    .spec-lbl {
+      font-size: 10px;
+      color: var(--steel);
+      letter-spacing: .05em;
+    }
+
+    .spec-val {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .spec-val.big {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .mc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mc-tag {
+      font-size: 10px;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ===== OTHER TOOLS ===== */
+    .tools-section {
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .tools-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--teal-mid);
+      letter-spacing: .25em;
+      margin-bottom: 12px;
+    }
+
+    .tools-section-heading {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all .3s;
+    }
+
+    .tool-card:hover {
+      border-color: var(--teal-light);
+      box-shadow: 0 10px 24px -8px rgba(10, 110, 110, .12);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--teal-light);
+      color: var(--teal-mid);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 3px;
+    }
+
+    .tool-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .tool-name-en {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--steel);
+      letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+
+    .tool-desc {
+      font-size: 12px;
+      color: var(--steel);
+      line-height: 1.6;
+    }
+
+    /* ===== QUALITY STATS ===== */
+    .quality-block {
+      background: linear-gradient(135deg, var(--teal) 0%, #0a4f4f 100%);
+      color: #fff;
+      border-radius: 4px;
+      padding: 56px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    .q-item {
+      text-align: center;
+    }
+
+    .q-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .q-unit {
+      font-size: 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .q-label {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .9);
+      margin-bottom: 6px;
+    }
+
+    .q-sublabel {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .15em;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1024px) {
+      .page-hero {
+        padding: 130px 24px 60px;
+      }
+
+      .hero-crosshair {
+        width: 120px;
+        height: 120px;
+        right: 24px;
+        bottom: 20px;
+      }
+
+      .content {
+        padding: 48px 24px;
+      }
+
+      .measure-card {
+        grid-template-columns: 1fr;
+        border-radius: 4px;
+      }
+
+      .mc-img {
+        min-height: 260px;
+      }
+
+      .mc-spec-side {
+        padding: 32px 28px;
+      }
+
+      .quality-block {
+        grid-template-columns: 1fr;
+        padding: 36px 28px;
+        gap: 28px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:640px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <div id="header-placeholder"></div>
+
+  <!-- ===== HERO ===== -->
+  <div class="page-hero">
+    <!-- decorative crosshair -->
+    <svg class="hero-crosshair" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" stroke="white" stroke-width="1" />
+      <circle cx="100" cy="100" r="64" stroke="white" stroke-width="1" />
+      <circle cx="100" cy="100" r="32" stroke="white" stroke-width="1" />
+      <circle cx="100" cy="100" r="6" fill="white" />
+      <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="0.8" stroke-dasharray="4 4" />
+      <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="0.8" stroke-dasharray="4 4" />
+      <line x1="30" y1="30" x2="170" y2="170" stroke="white" stroke-width="0.4" opacity="0.5" />
+      <line x1="170" y1="30" x2="30" y2="170" stroke="white" stroke-width="0.4" opacity="0.5" />
+    </svg>
+
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">HOME</a><span>/</span>
+        <a href="tech.html">設備・技術</a><span>/</span>
+        <span>測定機器</span>
+      </div>
+      <h1>測定機器<br><span class="green">2台</span>の品質保証設備</h1>
+      <p class="page-hero-sub">
+        三次元測定機・CNC画像測定機を完備し、加工後の全数確認から抜き取り検査まで対応。JIS・図面公差に基づいた精密測定で、±0.01mmの加工精度を確実に保証します。
+      </p>
+      <div class="hero-badge">
+        <div>
+          <div class="val">±0.01<span style="font-size:16px">mm</span></div>
+        </div>
+        <div class="desc">加工保証精度<br>全数検査対応</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="content">
+
+    <!-- ===== CARD 1: XYZAX SP600A ===== -->
+    <div class="measure-card">
+      <div class="mc-img">
+        <img src="images/machine/machine-do/XYZ-SP-600A.jpg" loading="lazy"
+          onerror="this.style.display='none';this.parentNode.querySelector('.mc-img-fallback').style.display='flex'"
+          alt="東京精密 XYZAX SP600A">
+        <div class="mc-img-fallback" style="display:none">
+          <!-- CMM wireframe SVG -->
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="position:relative;z-index:2;opacity:.35">
+            <!-- base -->
+            <rect x="10" y="110" width="120" height="12" rx="2" stroke="rgba(125,232,216,.7)" stroke-width="1.2" />
+            <!-- columns -->
+            <rect x="20" y="30" width="8" height="80" rx="2" stroke="rgba(125,232,216,.6)" stroke-width="1" />
+            <rect x="112" y="30" width="8" height="80" rx="2" stroke="rgba(125,232,216,.6)" stroke-width="1" />
+            <!-- bridge -->
+            <rect x="20" y="28" width="100" height="10" rx="2" stroke="rgba(125,232,216,.8)" stroke-width="1.2" />
+            <!-- Z ram -->
+            <rect x="64" y="28" width="12" height="60" rx="2" stroke="rgba(125,232,216,.7)" stroke-width="1" />
+            <!-- probe -->
+            <line x1="70" y1="88" x2="70" y2="108" stroke="rgba(125,232,216,.6)" stroke-width="1.5" />
+            <circle cx="70" cy="110" r="3" fill="rgba(125,232,216,.5)" />
+            <!-- workpiece -->
+            <rect x="35" y="98" width="30" height="12" rx="1" stroke="rgba(125,232,216,.35)" stroke-width="0.8"
+              stroke-dasharray="3 2" />
+            <!-- crosshair -->
+            <line x1="55" y1="105" x2="70" y2="105" stroke="rgba(125,232,216,.4)" stroke-width="0.5"
+              stroke-dasharray="2 2" />
+            <line x1="50" y1="100" x2="50" y2="110" stroke="rgba(125,232,216,.4)" stroke-width="0.5"
+              stroke-dasharray="2 2" />
+          </svg>
+          <div
+            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(125,232,216,.4);letter-spacing:.2em;position:relative;z-index:2">
+            3D CMM / XYZAX SP600A</div>
+        </div>
+        <div class="mc-img-overlay"></div>
+        <span class="mc-brand-tag tag-accretech">ACCRETECH / 東京精密</span>
+        <span class="mc-type-tag">三次元座標測定機 / 3D CMM</span>
+      </div>
+      <div class="mc-spec-side">
+        <div class="mc-number">MEASURING INSTRUMENT / No.01</div>
+        <div class="mc-model">XYZAX SP600A</div>
+        <div class="mc-maker">TOKYO SEIMITSU CO., LTD. (ACCRETECH)</div>
+        <div class="accuracy-chip">
+          <span class="num">3 μm</span>
+          <span class="lbl">クラス精度<br>3次元接触測定</span>
+        </div>
+        <div class="axis-section">
+          <div class="axis-title">MEASURING RANGE (X · Y · Z)</div>
+          <div class="axis-row">
+            <span class="axis-lbl">X</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:100%"></div>
+            </div>
+            <span class="axis-val">600 mm</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-lbl">Y</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:83%"></div>
+            </div>
+            <span class="axis-val">500 mm</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-lbl">Z</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:50%"></div>
+            </div>
+            <span class="axis-val">300 mm</span>
+          </div>
+        </div>
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <span class="spec-lbl">ACCURACY (MPE)</span>
+            <span class="spec-val big">(2.5+4L/1000) μm</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">RESOLUTION</span>
+            <span class="spec-val">0.0001 mm</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">PROBE</span>
+            <span class="spec-val">タッチトリガー</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">MAX LOAD</span>
+            <span class="spec-val">300 kg</span>
+          </div>
+          <div class="spec-cell full">
+            <span class="spec-lbl">DRIVE SPEED</span>
+            <span class="spec-val">最大 300 mm/sec（CNC自動測定）</span>
+          </div>
+          <div class="spec-cell full">
+            <span class="spec-lbl">MEASUREMENT STANDARD</span>
+            <span class="spec-val">ISO 10360 / JIS B 7440 準拠</span>
+          </div>
+        </div>
+        <div class="mc-tags">
+          <span class="mc-tag">3次元接触測定</span>
+          <span class="mc-tag">幾何公差</span>
+          <span class="mc-tag">GD&T解析</span>
+          <span class="mc-tag">CNC自動測定</span>
+          <span class="mc-tag">寸法検査</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CARD 2: Mitutoyo Quick Vision Active ===== -->
+    <div class="measure-card">
+      <div class="mc-img">
+        <img src="images/machine/machine-do/Mitutoyo-Quick-Vision-Active.jpeg" loading="lazy"
+          onerror="this.style.display='none';this.parentNode.querySelector('.mc-img-fallback').style.display='flex'"
+          alt="Mitutoyo Quick Vision Active">
+        <div class="mc-img-fallback" style="display:none">
+          <!-- Vision machine SVG -->
+          <svg width="140" height="130" viewBox="0 0 140 130" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="position:relative;z-index:2;opacity:.35">
+            <!-- body -->
+            <rect x="15" y="20" width="110" height="80" rx="4" stroke="rgba(125,232,216,.7)" stroke-width="1.2" />
+            <!-- stage glass -->
+            <rect x="25" y="60" width="90" height="35" rx="2" stroke="rgba(125,232,216,.5)" stroke-width="1"
+              stroke-dasharray="3 2" />
+            <!-- lens head -->
+            <rect x="52" y="10" width="36" height="24" rx="4" stroke="rgba(125,232,216,.8)" stroke-width="1.2" />
+            <circle cx="70" cy="22" r="8" stroke="rgba(125,232,216,.7)" stroke-width="1" />
+            <circle cx="70" cy="22" r="3" fill="rgba(125,232,216,.4)" />
+            <!-- light beams -->
+            <line x1="70" y1="34" x2="60" y2="62" stroke="rgba(125,232,216,.25)" stroke-width="0.8" />
+            <line x1="70" y1="34" x2="80" y2="62" stroke="rgba(125,232,216,.25)" stroke-width="0.8" />
+            <!-- workpiece on stage -->
+            <rect x="45" y="72" width="50" height="16" rx="2" stroke="rgba(125,232,216,.4)" stroke-width="0.8"
+              stroke-dasharray="3 2" />
+            <!-- crosshair on workpiece -->
+            <line x1="70" y1="68" x2="70" y2="92" stroke="rgba(125,232,216,.35)" stroke-width="0.5"
+              stroke-dasharray="2 2" />
+            <line x1="50" y1="80" x2="90" y2="80" stroke="rgba(125,232,216,.35)" stroke-width="0.5"
+              stroke-dasharray="2 2" />
+            <circle cx="70" cy="80" r="4" stroke="rgba(125,232,216,.5)" stroke-width="0.8" />
+          </svg>
+          <div
+            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(125,232,216,.4);letter-spacing:.2em;position:relative;z-index:2">
+            CNC VISION / QUICK VISION ACTIVE</div>
+        </div>
+        <div class="mc-img-overlay"></div>
+        <span class="mc-brand-tag tag-mitutoyo">MITUTOYO</span>
+        <span class="mc-type-tag">CNC画像測定機 / VISION CMM</span>
+      </div>
+      <div class="mc-spec-side">
+        <div class="mc-number">MEASURING INSTRUMENT / No.02</div>
+        <div class="mc-model">Quick Vision Active</div>
+        <div class="mc-maker">株式会社ミツトヨ / Mitutoyo Corporation — QVPAK V13.1</div>
+        <div class="accuracy-chip">
+          <span class="num">2 μm</span>
+          <span class="lbl">XY精度<br>非接触光学測定</span>
+        </div>
+        <div class="axis-section">
+          <div class="axis-title">MEASURING RANGE (X · Y · Z)</div>
+          <div class="axis-row">
+            <span class="axis-lbl">X</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:100%"></div>
+            </div>
+            <span class="axis-val">400 mm</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-lbl">Y</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:100%"></div>
+            </div>
+            <span class="axis-val">400 mm</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-lbl">Z</span>
+            <div class="axis-bg">
+              <div class="axis-fill" style="width:50%"></div>
+            </div>
+            <span class="axis-val">200 mm</span>
+          </div>
+        </div>
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <span class="spec-lbl">ACCURACY E1 X/Y</span>
+            <span class="spec-val big">(2+3L/1000) μm</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">ACCURACY E1 Z</span>
+            <span class="spec-val">(3+5L/1000) μm</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">ZOOM MAGNIFICATION</span>
+            <span class="spec-val">0.5× ～ 7×</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">TEMP. GUARANTEE</span>
+            <span class="spec-val">20 ± 1°C</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">CAMERA</span>
+            <span class="spec-val">高速CMOSカラー</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">LIGHT SOURCE</span>
+            <span class="spec-val">LED（同軸・リング・透過）</span>
+          </div>
+          <div class="spec-cell full">
+            <span class="spec-lbl">SOFTWARE</span>
+            <span class="spec-val">QVPAK V13.1（エッジ検出・パターン認識・CAD比較）</span>
+          </div>
+        </div>
+        <div class="mc-tags">
+          <span class="mc-tag">非接触光学測定</span>
+          <span class="mc-tag">2.5D / 3D対応</span>
+          <span class="mc-tag">エッジ検出</span>
+          <span class="mc-tag">CAD比較</span>
+          <span class="mc-tag">CNC自動プログラム</span>
+          <span class="mc-tag">タッチプローブ対応</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== OTHER MEASURING TOOLS ===== -->
+    <div class="tools-section">
+      <div class="tools-section-label">OTHER MEASURING INSTRUMENTS</div>
+      <div class="tools-section-heading">その他の測定機器・工具</div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">マイクロメーター</div>
+            <div class="tool-name-en">MICROMETER</div>
+            <div class="tool-desc">外径・内径・深さを0.001mm単位で精密測定。外側・内側・深さ各種を完備。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 4h16v4H4zM4 10h10v4H4zM4 16h6v4H4z" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">ノギス</div>
+            <div class="tool-name-en">VERNIER CALIPER</div>
+            <div class="tool-desc">外径・内径・段差・深さを素早く計測。デジタル式で0.01mm分解能。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 3" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">ダイヤルゲージ</div>
+            <div class="tool-name-en">DIAL GAUGE</div>
+            <div class="tool-desc">振れ・平行度・面振れの確認に使用。0.001mm分解能。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">ハイトゲージ</div>
+            <div class="tool-name-en">HEIGHT GAUGE</div>
+            <div class="tool-desc">定盤上での高さ・段差測定。デジタル表示で0.01mm精度。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 12h20M12 2v20" />
+              <circle cx="12" cy="12" r="4" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">ブロックゲージ</div>
+            <div class="tool-name-en">GAUGE BLOCK</div>
+            <div class="tool-desc">基準寸法の校正・確認用。JIS 1級ブロックゲージセットを保有。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 20L20 4M4 4l16 16" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">表面粗さ測定器</div>
+            <div class="tool-name-en">SURFACE ROUGHNESS TESTER</div>
+            <div class="tool-desc">Ra・Rz・Ryなど各種粗さパラメータを計測。加工面品質を数値で管理。</div>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="12" y1="3" x2="12" y2="7" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+          </div>
+          <div>
+            <div class="tool-name">シリンダーゲージ</div>
+            <div class="tool-name-en">CYLINDER GAUGE / BORE GAUGE</div>
+            <div class="tool-desc">穴径・内径の精密測定に使用。ダイヤルゲージと組み合わせて0.001mm単位で内径を管理。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== QUALITY STATS ===== -->
+    <div class="quality-block">
+      <div class="q-item">
+        <div class="q-num">2<span class="q-unit">台</span></div>
+        <div class="q-label">精密測定機を完備<br>三次元・画像の両方式で対応</div>
+        <div class="q-sublabel">CMM + VISION SYSTEM</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">0.001<span class="q-unit">mm</span></div>
+        <div class="q-label">分解能<br>0.1μm単位での精密な<br>寸法管理が可能</div>
+        <div class="q-sublabel">RESOLUTION 0.0001mm</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">ISO<span style="font-size:20px;margin-left:6px">10360</span></div>
+        <div class="q-label">国際規格準拠<br>トレーサブルな検査体制で<br>品質保証を徹底</div>
+        <div class="q-sublabel">JIS B 7440 COMPLIANT</div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- ===== SIBLING LINKS ===== -->
+  <div class="sibling-row">
+    <a href="mc.html" class="sibling-btn">
+      <div>
+        <div class="s-label">MC設備</div>
+        <div class="s-title">マシニングセンター</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">15</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+    <a href="nc.html" class="sibling-btn">
+      <div>
+        <div class="s-label">NC旋盤</div>
+        <div class="s-title">CNCターニングセンター</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">5</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Dynamic Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // animate axis bars on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.axis-fill').forEach(bar => {
+            const w = bar.style.width;
+            bar.style.width = '0';
+            requestAnimationFrame(() => setTimeout(() => { bar.style.width = w }, 100));
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.measure-card').forEach(c => obs.observe(c));
+  </script>
+
+  <!-- Common Script -->
+  <script src="js/common.js"></script>
+</body>
+
+</html>

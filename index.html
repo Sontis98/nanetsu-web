@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南越製作所 | 精密機械加工・マシニングセンター・NC旋盤加工</title>
+  <meta name="description" content="大阪府東大阪市の南越製作所。機械加工、マシニングセンター、NC旋盤加工の専門企業。確かな技術と精密な仕上がりをお約束します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Dynamic Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero-bg-text">精密</div>
+    <div class="hero-content">
+      <div class="hero-tag">PRECISION MACHINING</div>
+      <h1 class="hero-title">
+        確かな技術で、<br>
+        ものづくりの<br>
+        <span class="accent">未来</span>を削り出す。
+      </h1>
+      <p class="hero-sub">
+        大阪・東大阪より、世界基準の精密機械加工を。<br>
+        マシニングセンター、NC旋盤加工を中心に、<br>
+        お客様のあらゆる要望にお応えする確かな技術力で、<br>
+        次世代のものづくりを支えます。
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">
+          お問い合わせ
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a href="#services" class="btn-ghost">事業内容を見る ↓</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Factory photo background -->
+      <img src="images/company/interior.jpg" alt="工場内部"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.38;z-index:0;filter:saturate(0.7) brightness(0.85);">
+      <div class="blueprint"></div>
+      <div class="blueprint-major"></div>
+      <span class="visual-corner vc-tl">DWG. NO / NS-2026<br>SCALE / 1:1</span>
+      <span class="visual-corner vc-tr">REV. A<br>東大阪 大阪 JP</span>
+      <span class="visual-corner vc-bl">MATERIAL<br>STEEL / ALUMINUM</span>
+      <span class="visual-corner vc-br">TOLERANCE<br>±0.01mm</span>
+      <!-- Main gear -->
+      <svg class="gear-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".8">
+          <circle cx="100" cy="100" r="92" />
+          <circle cx="100" cy="100" r="76" />
+          <circle cx="100" cy="100" r="34" />
+          <circle cx="100" cy="100" r="20" />
+          <circle cx="100" cy="100" r="6" fill="rgba(255,255,255,.6)" />
+        </g>
+        <g stroke="rgba(255,255,255,.7)" stroke-width="1.2" fill="rgba(255,255,255,.05)">
+          <!-- Gear teeth via rotated rectangles -->
+          <g id="teeth-group">
+            <rect x="96" y="2" width="8" height="14" />
+          </g>
+          <use href="#teeth-group" transform="rotate(15 100 100)" />
+          <use href="#teeth-group" transform="rotate(30 100 100)" />
+          <use href="#teeth-group" transform="rotate(45 100 100)" />
+          <use href="#teeth-group" transform="rotate(60 100 100)" />
+          <use href="#teeth-group" transform="rotate(75 100 100)" />
+          <use href="#teeth-group" transform="rotate(90 100 100)" />
+          <use href="#teeth-group" transform="rotate(105 100 100)" />
+          <use href="#teeth-group" transform="rotate(120 100 100)" />
+          <use href="#teeth-group" transform="rotate(135 100 100)" />
+          <use href="#teeth-group" transform="rotate(150 100 100)" />
+          <use href="#teeth-group" transform="rotate(165 100 100)" />
+          <use href="#teeth-group" transform="rotate(180 100 100)" />
+          <use href="#teeth-group" transform="rotate(195 100 100)" />
+          <use href="#teeth-group" transform="rotate(210 100 100)" />
+          <use href="#teeth-group" transform="rotate(225 100 100)" />
+          <use href="#teeth-group" transform="rotate(240 100 100)" />
+          <use href="#teeth-group" transform="rotate(255 100 100)" />
+          <use href="#teeth-group" transform="rotate(270 100 100)" />
+          <use href="#teeth-group" transform="rotate(285 100 100)" />
+          <use href="#teeth-group" transform="rotate(300 100 100)" />
+          <use href="#teeth-group" transform="rotate(315 100 100)" />
+          <use href="#teeth-group" transform="rotate(330 100 100)" />
+          <use href="#teeth-group" transform="rotate(345 100 100)" />
+        </g>
+        <!-- crosshair -->
+        <line x1="100" y1="0" x2="100" y2="200" stroke="rgba(255,255,255,.15)" stroke-dasharray="2 4" />
+        <line x1="0" y1="100" x2="200" y2="100" stroke="rgba(255,255,255,.15)" stroke-dasharray="2 4" />
+      </svg>
+      <!-- Small gear -->
+      <svg class="gear-svg-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1">
+          <circle cx="50" cy="50" r="42" />
+          <circle cx="50" cy="50" r="32" />
+          <circle cx="50" cy="50" r="14" />
+          <circle cx="50" cy="50" r="3" fill="rgba(255,255,255,.5)" />
+        </g>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">±0.01<span class="unit">mm</span></div>
+      <div class="stat-label">精密加工精度</div>
+      <div class="stat-en">PRECISION TOLERANCE</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24<span class="unit">時間</span></div>
+      <div class="stat-label">迅速対応</div>
+      <div class="stat-en">QUICK RESPONSE</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<span class="unit">+</span></div>
+      <div class="stat-label">取引実績</div>
+      <div class="stat-en">PROJECT DELIVERED</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20<span class="unit">年以上</span></div>
+      <div class="stat-label">製造実績・経験年数</div>
+      <div class="stat-en">YEARS OF EXPERIENCE</div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="section-head">
+      <div>
+        <div class="section-num">01 — 会社案内</div>
+        <h2 class="section-title">
+          ひとつひとつの仕事に、<br>
+          <span class="blue">職人の魂</span>を。
+        </h2>
+      </div>
+      <p class="section-desc">
+        私たち南越製作所は、東大阪の地で長年培ってきた経験と最新の加工技術を融合させ、お客様一人ひとりに寄り添ったものづくりを行っています。
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="images/interior-3.jpg" alt="南越製作所 工場内様子"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; filter: contrast(1.05) brightness(0.82); z-index: 1;">
+        <div class="about-img-deco" style="z-index: 3;">PRECISION<br>SINCE</div>
+        <div class="about-img-text" style="z-index: 3;">
+          <div class="kanji">南越</div>
+          <div class="desc">NANETSU SEISAKUSHO / OSAKA</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h3>確かな技術力と、誠実なものづくり。<br>それが私たちの誇りです。</h3>
+        <p>
+          南越製作所は、機械加工・マシニングセンター・NC旋盤加工を中心に、多品種小ロットから量産まで、幅広いお客様のニーズにお応えしてまいりました。
+        </p>
+        <p>
+          東大阪という、日本を代表するものづくりの街で培われた技術は、職人の手から手へと受け継がれ、いまもなお進化を続けています。
+        </p>
+
+        <div class="about-features">
+          <div class="feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </div>
+            <div>
+              <h4>高精度加工</h4>
+              <p>ミクロン単位の精密加工に対応</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+              </svg>
+            </div>
+            <div>
+              <h4>柔軟な対応</h4>
+              <p>試作品から量産までフレキシブルに</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <h4>品質保証</h4>
+              <p>全工程での厳格な品質管理</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <h4>短納期対応</h4>
+              <p>お急ぎの案件もお気軽にご相談</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="section-head">
+      <div>
+        <div class="section-num">02 — 事業内容</div>
+        <h2 class="section-title">
+          三つの強みで、<br>
+          <span class="blue">あらゆる要望</span>に。
+        </h2>
+      </div>
+      <p class="section-desc">
+        多品種小ロットから量産まで、複雑形状の精密加工から品質検査まで、南越製作所がワンストップでお応えします。
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 01 -->
+      <div class="service">
+        <div class="service-bg" style="background-image: url('images/1.jpg');"></div>
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <div class="service-num">01 / SOLUTIONS</div>
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+          </div>
+          <h3>多品種小ロット・量産加工</h3>
+          <span class="en">FLEXIBLE PRODUCTION</span>
+          <p>
+            お客様のニーズに合わせ、1点の試作・研究開発部品から、数百〜数千個の中量生産までフレキシブルに対応。短納期での加工もお気軽にご相談ください。
+          </p>
+          <ul class="service-list">
+            <li>試作品・単品パーツの即納加工</li>
+            <li>多品種小ロット〜量産対応</li>
+            <li>鉄、アルミ、ステンレス等多様な金属に対応</li>
+          </ul>
+          <a href="tech.html" class="service-cta">設備一覧を見る →</a>
+        </div>
+      </div>
+
+      <!-- Service 02 -->
+      <div class="service">
+        <div class="service-bg" style="background-image: url('images/2.jpg');"></div>
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <div class="service-num">02 / SOLUTIONS</div>
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="6" width="18" height="12" rx="1" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+              <circle cx="8" cy="14" r="1.5" />
+              <circle cx="16" cy="14" r="1.5" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+            </svg>
+          </div>
+          <h3>複雑形状・高精度加工</h3>
+          <span class="en">PRECISION CNC MACHINING</span>
+          <p>
+            3軸マシニングセンターと最新CAD/CAMシステムを活用。手加工では困難な複雑な3次元曲面や、ミクロン単位の厳しい幾何公差が要求される部品加工を実現します。
+          </p>
+          <ul class="service-list">
+            <li>高精度な3次元曲面・金型加工</li>
+            <li>厳しい公差制限（±0.01mm）のクリア</li>
+            <li>CAD/CAMによる最適なツールパス設計</li>
+          </ul>
+          <a href="mc.html" class="service-cta">マシニング設備を見る →</a>
+        </div>
+      </div>
+
+      <!-- Service 03 -->
+      <div class="service">
+        <div class="service-bg" style="background-image: url('images/3.webp');"></div>
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <div class="service-num">03 / SOLUTIONS</div>
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="12" y1="3" x2="12" y2="21" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+            </svg>
+          </div>
+          <h3>品質保証・検査体制</h3>
+          <span class="en">QUALITY ASSURANCE</span>
+          <p>
+            三次元測定機やCNC画像測定機を完備した検査室にて、加工完了後の寸法・形状精度を精密測定。お客様の手元に不良品を一切届けない厳格な品質管理を徹底しています。
+          </p>
+          <ul class="service-list">
+            <li>三次元座標測定機による接触測定</li>
+            <li>CNC画像測定機による高精度非接触測定</li>
+            <li>検査成績書・測定データの提出対応</li>
+          </ul>
+          <a href="do.html" class="service-cta">測定設備を見る →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="services.html" class="btn-primary" style="display: inline-flex;">
+        事業内容を詳しく見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== TECHNOLOGY ===== -->
+  <section class="tech" id="tech">
+    <div class="section-head" style="position:relative;z-index:2;">
+      <div>
+        <div class="section-num">03 — 設備・技術</div>
+        <h2 class="section-title">
+          最新設備と<br>
+          <span class="blue">熟練の技</span>の融合。
+        </h2>
+      </div>
+      <p class="section-desc">
+        最新のマシニングセンターやNC旋盤を導入し、職人の経験と技術を組み合わせることで、最高品質の加工を実現します。
+      </p>
+    </div>
+
+    <div class="tech-content">
+      <div class="tech-list">
+        <a href="mc.html" class="tech-item">
+          <span class="tech-num">/01</span>
+          <div class="tech-name">マシニングセンター/15台
+            <span class="en">X:650 × Y:510 × Z:450mm｜MAX Ø350kg｜±0.01mm</span>
+          </div>
+          <span class="tech-arrow">→</span>
+        </a>
+        <a href="nc.html" class="tech-item">
+          <span class="tech-num">/02</span>
+          <div class="tech-name">NC旋盤/5台
+            <span class="en">最大旋削径 Ø260mm｜最大旋削長 500mm｜±0.01mm</span>
+          </div>
+          <span class="tech-arrow">→</span>
+        </a>
+        <a href="do.html" class="tech-item">
+          <span class="tech-num">/03</span>
+          <div class="tech-name">各種測定機器/2台
+            <span class="en">三次元測定機・CNC画像測定機・マイクロメーター 他</span>
+          </div>
+          <span class="tech-arrow">→</span>
+        </a>
+        <div class="tech-item">
+          <span class="tech-num">/04</span>
+          <div class="tech-name">対応素材
+            <span class="en">鉄・ステンレス・アルミ・真鍮・銅・チタン 他10+種</span>
+          </div>
+          <span class="tech-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="tech-visual">
+        <div class="tech-visual-grid"></div>
+        <span class="tech-spec ts1">SPEC. 01<br>HIGH PRECISION</span>
+        <span class="tech-spec ts2">SPEC. 02<br>MAX-Ø 350mm</span>
+        <span class="tech-spec ts3">RPM<br>0—4000</span>
+        <span class="tech-spec ts4">ACCURACY<br>±0.01mm</span>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lathe representation -->
+          <g fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1">
+            <!-- Chuck -->
+            <circle cx="100" cy="100" r="50" />
+            <circle cx="100" cy="100" r="38" />
+            <circle cx="100" cy="100" r="22" />
+            <circle cx="100" cy="100" r="6" fill="rgba(125,196,245,.8)" />
+            <!-- Jaws -->
+            <path d="M100 50 L92 38 L108 38 Z" fill="rgba(255,255,255,.1)" />
+            <path d="M100 150 L92 162 L108 162 Z" fill="rgba(255,255,255,.1)" />
+            <path d="M50 100 L38 92 L38 108 Z" fill="rgba(255,255,255,.1)" />
+            <path d="M150 100 L162 92 L162 108 Z" fill="rgba(255,255,255,.1)" />
+            <!-- Crosshair -->
+            <line x1="0" y1="100" x2="200" y2="100" stroke-dasharray="3 4" opacity=".4" />
+            <line x1="100" y1="0" x2="100" y2="200" stroke-dasharray="3 4" opacity=".4" />
+            <!-- Outer arcs -->
+            <path d="M30 100 A70 70 0 0 1 100 30" stroke="rgba(125,196,245,.6)" />
+            <path d="M170 100 A70 70 0 0 1 100 170" stroke="rgba(125,196,245,.6)" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="section-head">
+      <div>
+        <div class="section-num">04 — ギャラリー</div>
+        <h2 class="section-title">
+          製品・加工事例<br>
+          <span class="blue">ギャラリー</span>
+        </h2>
+      </div>
+      <p class="section-desc">
+        マシニングセンター・NC旋盤による精密加工品の一部をご紹介します。お客様のご要望に合わせた多様な加工実績をご覧ください。
+      </p>
+    </div>
+
+    <div class="gallery-layout">
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-1.jpeg" alt="精密加工製品" loading="lazy">
+        <div class="gallery-overlay">PRECISION MACHINING / 精密加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-2.jpeg" alt="加工事例 02" loading="lazy">
+        <div class="gallery-overlay">MACHINING CENTER</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-3.jpeg" alt="加工事例 03" loading="lazy">
+        <div class="gallery-overlay">NC TURNING</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-4.jpeg" alt="加工事例 04" loading="lazy">
+        <div class="gallery-overlay">PRECISION PARTS</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-5.jpeg" alt="加工事例 05" loading="lazy">
+        <div class="gallery-overlay">MILLING / フライス加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-6.jpeg" alt="加工事例 06" loading="lazy">
+        <div class="gallery-overlay">TURNING / 旋削加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-7.jpeg" alt="加工事例 07" loading="lazy">
+        <div class="gallery-overlay">COMPLEX PART / 複合加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-8.jpeg" alt="加工事例 08" loading="lazy">
+        <div class="gallery-overlay">HIGH PRECISION</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/3665-2-4-gimg-9.jpeg" alt="加工事例 09" loading="lazy">
+        <div class="gallery-overlay">PRECISION PARTS</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-1.png" alt="加工事例 10" loading="lazy">
+        <div class="gallery-overlay">PRECISION PARTS</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-2.png" alt="加工事例 11" loading="lazy">
+        <div class="gallery-overlay">CNC MACHINING</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-3.png" alt="加工事例 12" loading="lazy">
+        <div class="gallery-overlay">TURNING / 旋削加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-4.png" alt="加工事例 13" loading="lazy">
+        <div class="gallery-overlay">MILLING / フライス加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-5.png" alt="加工事例 14" loading="lazy">
+        <div class="gallery-overlay">FLANGE / フランジ加工</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/product/product-6.png" alt="加工事例 15" loading="lazy">
+        <div class="gallery-overlay">PRECISION PARTS / 精密部品</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <button class="btn-primary open-contact-modal" style="display:inline-flex;cursor:pointer;border:none;">
+        加工のご依頼・お問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== ORDER FLOW ===== -->
+  <section class="order-flow" id="order-flow">
+    <div class="section-head">
+      <div>
+        <div class="section-num">05 — 注文の流れ</div>
+        <h2 class="section-title">
+          ご依頼から納品まで、<br>
+          <span class="blue">安心のプロセス</span>。
+        </h2>
+      </div>
+      <p class="section-desc">
+        お問い合わせから納品まで、お客様に安心してご依頼いただけるよう、丁寧にサポートいたします。まずはお気軽にご相談ください。
+      </p>
+    </div>
+
+    <div class="flow-track">
+      <!-- Step 1 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>01</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">お問い合わせ・<br>ご相談</h4>
+          <p class="flow-step-desc">電話・メール・フォームよりお気軽にご連絡ください。加工内容、材質、数量などをお聞かせください。</p>
+          <div class="flow-step-tag">TEL / MAIL / FORM</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>02</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">図面・仕様の<br>ご提出</h4>
+          <p class="flow-step-desc">図面（PDF・DXF等）や仕様書をメールにてお送りください。口頭でのご相談も対応いたします。</p>
+          <div class="flow-step-tag">PDF / DXF / CAD</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>03</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">お見積もり・<br>ご提案</h4>
+          <p class="flow-step-desc">図面・仕様を確認後、加工方法と費用をご提示します。最短24時間以内にご回答いたします。</p>
+          <div class="flow-step-tag">MAX 24H RESPONSE</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>04</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">ご発注・<br>ご契約</h4>
+          <p class="flow-step-desc">お見積りにご納得いただけましたら、正式にご発注をお願いいたします。納期・仕様を最終確認します。</p>
+          <div class="flow-step-tag">ORDER CONFIRMED</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>05</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">加工・<br>製造</h4>
+          <p class="flow-step-desc">マシニングセンター・NC旋盤など最新設備にて、精密加工を行います。工程ごとに進捗を管理します。</p>
+          <div class="flow-step-tag">CNC / MC / NC LATHE</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="flow-step reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>06</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">品質検査・<br>測定</h4>
+          <p class="flow-step-desc">三次元測定機・CNC画像測定機により全数検査を実施。図面公差内であることを厳格に確認します。</p>
+          <div class="flow-step-tag">CMM / ±0.01mm</div>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="32" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polyline points="26,5 34,12 26,19" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="flow-step flow-step--last reveal">
+        <div class="flow-step-inner">
+          <div class="flow-step-num">STEP <span>07</span></div>
+          <div class="flow-step-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="1" y="3" width="15" height="13" rx="1"/>
+              <path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <h4 class="flow-step-title">検品・<br>納品</h4>
+          <p class="flow-step-desc">梱包・検品後、指定の納品先へお届けします。検査成績書の同梱も対応可能です。</p>
+          <div class="flow-step-tag">DELIVERY COMPLETE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-cta-row">
+      <button class="btn-primary open-contact-modal" style="display:inline-flex;cursor:pointer;border:none;">
+        まずはお問い合わせ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== COMPANY ===== -->
+  <section class="company" id="company">
+    <div class="section-head">
+      <div>
+        <div class="section-num">06 — 会社概要</div>
+        <h2 class="section-title">
+          会社概要<br>
+          <span class="blue">COMPANY PROFILE</span>
+        </h2>
+      </div>
+      <p class="section-desc">
+        株式会社南越製作所の会社情報・アクセスマップをご案内します。
+      </p>
+    </div>
+
+    <div class="company-grid">
+      <div class="company-table-wrap">
+        <table class="info-table">
+          <tbody>
+            <tr>
+              <th>会社名</th>
+              <td>株式会社南越製作所<br><span class="mono">NANETSU CO.,Ltd.</span></td>
+            </tr>
+            <tr>
+              <th>代表者</th>
+              <td>デイン　バン ファン<br><span class="mono">DINH VAN PHAN</span></td>
+            </tr>
+            <tr>
+              <th>設立</th>
+              <td>平成19年（2007年）</td>
+            </tr>
+            <tr>
+              <th>所在地</th>
+              <td>〒577-0824<br>大阪府東大阪市大蓮南5丁目10-8</td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><span class="mono">06-6727-7866</span></td>
+            </tr>
+            <tr>
+              <th>FAX</th>
+              <td><span class="mono">06-6727-7867</span></td>
+            </tr>
+            <tr>
+              <th>メール</th>
+              <td><span class="mono">nanetsu.seisaku@gmail.com</span></td>
+            </tr>
+            <tr>
+              <th>事業内容</th>
+              <td>機械加工<br>マシニングセンター加工<br>NC旋盤加工</td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>平日 8:00 - 17:00<br><span class="mono">定休日：土・日・祝日</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="company.html" class="btn-outline" style="display:inline-flex;margin-top:28px;">
+          詳細・アクセスを見る
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=大阪府東大阪市大蓮南5丁目10-8&t=&z=17&ie=UTF8&iwloc=&output=embed&hl=ja" width="100%"
+          height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="contact-bg-text">お問い合わせ</div>
+    <div class="section-num">07 — お問い合わせ</div>
+    <h2 class="contact-title">
+      ものづくりのご相談、<br>
+      <span class="blue">お気軽にどうぞ。</span>
+    </h2>
+    <p class="contact-sub">
+      お見積りのご依頼、技術的なご相談、工場見学のお申し込みなど、<br>
+      どんなことでもお気軽にお問い合わせください。<br>
+      専門スタッフが丁寧にご対応いたします。
+    </p>
+    <div class="contact-actions">
+      <a href="tel:0667277866" class="btn-white" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        06-6727-7866
+      </a>
+      <button class="btn-white open-contact-modal" style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+        お問い合わせフォーム
+      </button>
+    </div>
+  </section>
+
+  <!-- Dynamic Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h3 class="modal-title">お問い合わせ<span>CONTACT US</span></h3>
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="bc85f9a0-05f5-448e-ac59-3e187cc230a4">
+        <input type="hidden" name="subject" value="南越製作所 ウェブサイトからのお問い合わせ">
+        <input type="hidden" name="from_name" value="南越製作所 Website">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">会社名 <span class="required">*</span></label>
+            <input type="text" name="company" class="form-input" placeholder="株式会社○○" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">お名前 <span class="required">*</span></label>
+            <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">メールアドレス <span class="required">*</span></label>
+            <input type="email" name="email" class="form-input" placeholder="info@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <input type="tel" name="phone" class="form-input" placeholder="06-XXXX-XXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ種別</label>
+          <select name="inquiry_type" class="form-input">
+            <option value="">選択してください</option>
+            <option value="見積もり依頼">見積もり依頼</option>
+            <option value="加工相談">加工相談</option>
+            <option value="図面確認">図面確認・技術相談</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ内容 <span class="required">*</span></label>
+          <textarea name="message" class="form-input form-textarea"
+            placeholder="加工内容・材質・数量・納期などをご記入ください。図面はメール添付にてお送りください。" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          送信する
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </button>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          お問い合わせを受け付けました。担当者よりご連絡いたします。
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Common Script -->
+  <script src="js/common.js"></script>
+  <script>
+    // Contact Modal
+    const modal = document.getElementById('contactModal');
+    const modalClose = document.getElementById('modalClose');
+    document.querySelectorAll('.open-contact-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Contact Form Submit
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = '送信中...';
+      btn.disabled = true;
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      if (res.ok) {
+        document.getElementById('formSuccess').style.display = 'flex';
+        form.reset();
+      }
+      btn.textContent = '送信する';
+      btn.disabled = false;
+    });
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('show'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.feat, .tech-item, .gallery-item, .stat, .service').forEach(el => {
+      el.classList.add('reveal');
+      revealObs.observe(el);
+    });
+  </script>
+</body>
+</html>

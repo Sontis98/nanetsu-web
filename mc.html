@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設備一覧 — マシニングセンター | 南越製作所</title>
+  <meta name="description" content="南越製作所の保有設備一覧。Mazak・Fanuc・Mori Seiki・Enshu・Kiwaのマシニングセンター15台の詳細仕様をご確認いただけます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 0 48px;
+      display: flex;
+      gap: 0;
+      position: sticky;
+      top: 77px;
+      z-index: 50;
+    }
+
+    .filter-btn {
+      padding: 20px 28px;
+      font-size: 12px;
+      letter-spacing: .15em;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      color: var(--steel);
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: color .3s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .filter-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--sky-500);
+      transform: scaleX(0);
+      transition: transform .35s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: var(--sky-700);
+    }
+
+    .filter-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .filter-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--sky-100);
+      color: var(--sky-700);
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .content {
+      padding: 80px 48px;
+    }
+
+    .brand-section {
+      margin-bottom: 80px;
+    }
+
+    .brand-section[data-brand] {
+      transition: opacity .4s;
+    }
+
+    .brand-section.hidden {
+      display: none;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-logo-badge {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .15em;
+    }
+
+    .badge-mazak {
+      background: #e05625;
+      color: #fff;
+    }
+
+    .badge-fanuc {
+      background: #f5c700;
+      color: #1a1100;
+    }
+
+    .badge-moriseiki {
+      background: #003A70;
+      color: #fff;
+    }
+
+    .badge-enshu {
+      background: #1a3a6b;
+      color: #fff;
+    }
+
+    .brand-count {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--sky-700);
+    }
+
+    .brand-count span {
+      font-size: 14px;
+      color: var(--steel);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    /* ===== MACHINE CARDS GRID ===== */
+    .machines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    .machine-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all .4s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .machine-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px -12px rgba(18, 86, 145, .16);
+      border-color: var(--sky-200);
+    }
+
+    .mc-image {
+      aspect-ratio: 16/9;
+      background: var(--sky-900);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mc-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s;
+      filter: brightness(.9);
+    }
+
+    .machine-card:hover .mc-image img {
+      transform: scale(1.05);
+    }
+
+    .mc-image-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--sky-800), var(--sky-900));
+    }
+
+    .mc-image-fallback .gear-icon {
+      width: 72px;
+      height: 72px;
+      opacity: .25;
+    }
+
+    .mc-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .2em;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+
+    .mc-tag.mazak {
+      background: #e05625;
+      color: #fff;
+    }
+
+    .mc-tag.fanuc {
+      background: #f5c700;
+      color: #1a1100;
+    }
+
+    .mc-tag.moriseiki {
+      background: #003A70;
+      color: #fff;
+    }
+
+    .mc-tag.enshu {
+      background: #1a3a6b;
+      color: #fff;
+    }
+
+    .mc-num {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: .1em;
+      z-index: 10;
+    }
+
+    .mc-body {
+      padding: 28px 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mc-model {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .mc-type-en {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--sky-600);
+      letter-spacing: .15em;
+      margin-bottom: 24px;
+    }
+
+    .mc-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .mc-spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .mc-spec-label {
+      font-size: 11px;
+      color: var(--steel);
+      letter-spacing: .05em;
+    }
+
+    .mc-spec-val {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .mc-travel-vis {
+      background: var(--paper-2);
+      padding: 16px;
+      border-radius: 3px;
+      margin-bottom: 28px;
+    }
+
+    .travel-row {
+      display: grid;
+      grid-template-columns: 20px 1fr 60px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .travel-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .travel-axis {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sky-600);
+    }
+
+    .travel-bar-bg {
+      height: 4px;
+      background: rgba(13, 27, 42, .06);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .travel-bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--sky-500);
+      border-radius: 2px;
+    }
+
+    .travel-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--steel);
+      text-align: right;
+    }
+
+    .mc-features {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mc-feat {
+      font-size: 10px;
+      background: var(--sky-50);
+      color: var(--sky-700);
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1024px) {
+      .page-hero {
+        padding: 130px 24px 60px;
+      }
+
+      .filter-bar {
+        padding: 0 24px;
+        top: 73px;
+      }
+
+      .content {
+        padding: 60px 24px;
+      }
+
+      .machines-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-count {
+        font-size: 80px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <div id="header-placeholder"></div>
+
+  <!-- ===== PAGE HERO ===== -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>/</span>
+        <a href="tech.html">設備・技術</a>
+        <span>/</span>
+        <span>マシニングセンター</span>
+      </div>
+      <h1>マシニングセンター<br><span class="blue">15台</span>の設備紹介</h1>
+      <p class="page-hero-sub">
+        Mazak・Fanuc・Mori Seiki・Enshu・Kiwa各社の精鋭機種を揃え、多品種小ロットから量産まで柔軟に対応します。各機種の詳細仕様をご確認ください。
+      </p>
+    </div>
+    <div class="hero-count">15</div>
+  </div>
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterBrand('all',this)">
+      すべて <span class="filter-count">15</span>
+    </button>
+    <button class="filter-btn" data-filter="mazak" onclick="filterBrand('mazak',this)">
+      Mazak <span class="filter-count">4</span>
+    </button>
+    <button class="filter-btn" data-filter="fanuc" onclick="filterBrand('fanuc',this)">
+      Fanuc <span class="filter-count">7</span>
+    </button>
+    <button class="filter-btn" data-filter="moriseiki" onclick="filterBrand('moriseiki',this)">
+      Mori Seiki <span class="filter-count">1</span>
+    </button>
+    <button class="filter-btn" data-filter="enshu" onclick="filterBrand('enshu',this)">
+      Enshu <span class="filter-count">2</span>
+    </button>
+    <button class="filter-btn" data-filter="kiwa" onclick="filterBrand('kiwa',this)">
+      Kiwa <span class="filter-count">1</span>
+    </button>
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="content">
+
+    <!-- ===== MAZAK ===== -->
+    <div class="brand-section" data-brand="mazak">
+      <div class="brand-header">
+        <div class="brand-logo-badge badge-mazak">MAZAK</div>
+        <div class="brand-count">4<span>台</span></div>
+        <div style="font-size:13px;color:var(--steel);margin-left:8px">山崎マザック株式会社 / Yamazaki Mazak Corporation</div>
+      </div>
+      <div class="machines-grid">
+
+        <!-- Mazak VCS 530C LH -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Vertical-Center-Smart-530C-LH.jpg" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Mazak Vertical Center Smart 530C LH">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag mazak">MAZAK</span>
+            <span class="mc-num">MC / No.01</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Vertical Center Smart 530C LH</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:100%"></div>
+                </div>
+                <span class="travel-val">1,050 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:50%"></div>
+                </div>
+                <span class="travel-val">530 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:49%"></div>
+                </div>
+                <span class="travel-val">510 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">12,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">1,300×550 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">30 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">RAPID TRAVERSE</span>
+                <span class="mc-spec-val">40,000 mm/min</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">MAZATROL SMART</span>
+              <span class="mc-feat">立型3軸</span>
+              <span class="mc-feat">高速主軸</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mazak VCN 410B -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Vertical-Center-NEXUS-410B.jpg" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Mazak Vertical Center Nexus 410B">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag mazak">MAZAK</span>
+            <span class="mc-num">MC / No.02</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Vertical Center Nexus 410B</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:72%"></div>
+                </div>
+                <span class="travel-val">762 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:39%"></div>
+                </div>
+                <span class="travel-val">410 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:48%"></div>
+                </div>
+                <span class="travel-val">510 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">12,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">1,100×410 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">30 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">RAPID TRAVERSE</span>
+                <span class="mc-spec-val">36,000 mm/min</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">MAZATROL 640M NEXUS</span>
+              <span class="mc-feat">立型3軸</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mazak FJV-200 -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/FJV-200.jpg" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Mazak FJV-200">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag mazak">MAZAK</span>
+            <span class="mc-num">MC / No.03</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">FJV-200</div>
+            <span class="mc-type-en">DOUBLE COLUMN VMC / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:53%"></div>
+                </div>
+                <span class="travel-val">560 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:39%"></div>
+                </div>
+                <span class="travel-val">410 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:39%"></div>
+                </div>
+                <span class="travel-val">410 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">12,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">800×460 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">30 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">SPINDLE MOTOR</span>
+                <span class="mc-spec-val">22 kW (30 HP)</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">門型構造</span>
+              <span class="mc-feat">熱変位補償</span>
+              <span class="mc-feat">高剛性</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mazak Impulse 30H -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Mazak-IMPULSE-30H.jfif" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Mazak Impulse 30H">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag mazak">MAZAK</span>
+            <span class="mc-num">MC / No.04</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Impulse 30H</div>
+            <span class="mc-type-en">COMPACT VMC / BT30</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:41%"></div>
+                </div>
+                <span class="travel-val">430 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:29%"></div>
+                </div>
+                <span class="travel-val">300 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:24%"></div>
+                </div>
+                <span class="travel-val">250 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">10,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT30</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">600×400 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">10 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">MAX TABLE LOAD</span>
+                <span class="mc-spec-val">70 kg</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">小型高速</span>
+              <span class="mc-feat">コンパクト</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mazak grid -->
+    </div><!-- /mazak section -->
+
+    <!-- ===== FANUC ===== -->
+    <div class="brand-section" data-brand="fanuc">
+      <div class="brand-header">
+        <div class="brand-logo-badge badge-fanuc">FANUC</div>
+        <div class="brand-count">7<span>台</span></div>
+        <div style="font-size:13px;color:var(--steel);margin-left:8px">ファナック株式会社 / FANUC Corporation</div>
+      </div>
+      <div class="machines-grid">
+
+        <!-- Fanuc Robodrill D14LiA5 -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Robodrill-α-D14LiA5.jpg" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Fanuc Robodrill alpha-D14LiA5">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag fanuc">FANUC</span>
+            <span class="mc-num">MC / No.05</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Robodrill α-D14LiA5</div>
+            <span class="mc-type-en">COMPACT VMC / BT30</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:47%"></div>
+                </div>
+                <span class="travel-val">500 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:38%"></div>
+                </div>
+                <span class="travel-val">400 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:31%"></div>
+                </div>
+                <span class="travel-val">330 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">10,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT30</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">700×400 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">14 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">RAPID TRAVERSE X/Y</span>
+                <span class="mc-spec-val">54,000 mm/min</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">Fanuc 31i-B</span>
+              <span class="mc-feat">高速割り出し</span>
+              <span class="mc-feat">3軸対応</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fanuc Drill Mate x6 -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Drill-Mate.jfif" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Fanuc Drill Mate">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag fanuc">FANUC</span>
+            <span class="mc-num">MC / No.06〜12</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Drill Mate（複数台）</div>
+            <span class="mc-type-en">COMPACT VMC / BT30 / 6 UNITS</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:36%"></div>
+                </div>
+                <span class="travel-val">370 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:27%"></div>
+                </div>
+                <span class="travel-val">280 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:25%"></div>
+                </div>
+                <span class="travel-val">260 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">10,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT30</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">550×300 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">14 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">UNITS</span>
+                <span class="mc-spec-val">6台（量産・多品種対応）</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">Fanuc CNC</span>
+              <span class="mc-feat">小型精密</span>
+              <span class="mc-feat">量産対応</span>
+              <span class="mc-feat">6台保有</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /fanuc grid -->
+    </div><!-- /fanuc section -->
+
+    <!-- ===== MORI SEIKI ===== -->
+    <div class="brand-section" data-brand="moriseiki">
+      <div class="brand-header">
+        <div class="brand-logo-badge badge-moriseiki">DMG MORI</div>
+        <div class="brand-count">1<span>台</span></div>
+        <div style="font-size:13px;color:var(--steel);margin-left:8px">森精機製作所（現 DMG 森精機）/ Mori Seiki Co., Ltd.</div>
+      </div>
+      <div class="machines-grid">
+
+        <!-- Mori Seiki M-300L -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Mori-Seiki-Partner-M-300L.png" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Mori Seiki Partner M-300L">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag moriseiki">MORI SEIKI</span>
+            <span class="mc-num">MC / No.13</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Partner M-300L</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:100%"></div>
+                </div>
+                <span class="travel-val">1,600 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:31%"></div>
+                </div>
+                <span class="travel-val">500 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:29%"></div>
+                </div>
+                <span class="travel-val">470 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">6,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">1,900×540 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">30 本</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">RAPID TRAVERSE</span>
+                <span class="mc-spec-val">24,000 mm/min</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">長尺ワーク対応</span>
+              <span class="mc-feat">X軸1,600mm</span>
+              <span class="mc-feat">Fanuc CNC</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== ENSHU ===== -->
+    <div class="brand-section" data-brand="enshu">
+      <div class="brand-header">
+        <div class="brand-logo-badge badge-enshu">ENSHU</div>
+        <div class="brand-count">2<span>台</span></div>
+        <div style="font-size:13px;color:var(--steel);margin-left:8px">遠州製作所 / Enshu Ltd.</div>
+      </div>
+      <div class="machines-grid">
+
+        <!-- Enshu 400V (Unit 1) -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Enshu-400V.webp" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Enshu 400V">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag enshu">ENSHU</span>
+            <span class="mc-num">MC / No.— (1)</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Enshu 400V</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:53%"></div>
+                </div>
+                <span class="travel-val">560 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:38%"></div>
+                </div>
+                <span class="travel-val">400 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:44%"></div>
+                </div>
+                <span class="travel-val">460 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">8,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">900×400 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">MOTOR</span>
+                <span class="mc-spec-val">7.5 kW</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">CNC CONTROL</span>
+                <span class="mc-spec-val">Fanuc 0-M</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">汎用型</span>
+              <span class="mc-feat">多素材対応</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enshu 400V (Unit 2) -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/machine/machine-mc/Enshu-400V.webp" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Enshu 400V (2台目)">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag enshu">ENSHU</span>
+            <span class="mc-num">MC / No.— (2)</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">Enshu 400V</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:53%"></div>
+                </div>
+                <span class="travel-val">560 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:38%"></div>
+                </div>
+                <span class="travel-val">400 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:44%"></div>
+                </div>
+                <span class="travel-val">460 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">8,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">900×400 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">MOTOR</span>
+                <span class="mc-spec-val">7.5 kW</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">CNC CONTROL</span>
+                <span class="mc-spec-val">Fanuc 0-M</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">汎用型</span>
+              <span class="mc-feat">多素材対応</span>
+              <span class="mc-feat">2台保有</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== KIWA ===== -->
+    <div class="brand-section" data-brand="kiwa">
+      <div class="brand-header">
+        <div class="brand-logo-badge" style="background:#1a5276;color:#fff;">KIWA</div>
+        <div class="brand-count">1<span>台</span></div>
+        <div style="font-size:13px;color:var(--steel);margin-left:8px">キワ機械株式会社 / Kiwa Machinery Co., Ltd.</div>
+      </div>
+      <div class="machines-grid">
+
+        <!-- Kiwa EXCELCENTER-4L -->
+        <div class="machine-card">
+          <div class="mc-image">
+            <img src="images/kiwa-excelcenter-4l.jpg" loading="lazy"
+              onerror="this.style.display='none';this.parentNode.querySelector('.mc-image-fallback').style.display='flex'"
+              alt="Kiwa EXCELCENTER-4L">
+            <div class="mc-image-fallback" style="display:none">
+              <svg class="gear-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="24" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+                <circle cx="40" cy="40" r="8" fill="rgba(125,196,245,.5)" />
+              </svg>
+            </div>
+            <span class="mc-tag" style="background:#1a5276;color:#fff;">KIWA</span>
+            <span class="mc-num">MC / No.15</span>
+          </div>
+          <div class="mc-body">
+            <div class="mc-model">EXCELCENTER-4L</div>
+            <span class="mc-type-en">VERTICAL MACHINING CENTER / BT40</span>
+            <div class="mc-travel-vis">
+              <div class="travel-row">
+                <span class="travel-axis">X</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:50%"></div>
+                </div>
+                <span class="travel-val">800 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Y</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:29%"></div>
+                </div>
+                <span class="travel-val">457 mm</span>
+              </div>
+              <div class="travel-row">
+                <span class="travel-axis">Z</span>
+                <div class="travel-bar-bg">
+                  <div class="travel-bar-fill" style="width:35%"></div>
+                </div>
+                <span class="travel-val">559 mm</span>
+              </div>
+            </div>
+            <div class="mc-specs">
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE</span>
+                <span class="mc-spec-val highlight">200 — 6,000 rpm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TAPER</span>
+                <span class="mc-spec-val">BT40</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">TABLE</span>
+                <span class="mc-spec-val">430×890 mm</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">ATC</span>
+                <span class="mc-spec-val">16 本</span>
+              </div>
+              <div class="mc-spec-item">
+                <span class="mc-spec-label">SPINDLE MOTOR</span>
+                <span class="mc-spec-val">7.5 kW (10 HP)</span>
+              </div>
+              <div class="mc-spec-item full">
+                <span class="mc-spec-label">CNC CONTROL</span>
+                <span class="mc-spec-val">Fanuc 10M</span>
+              </div>
+            </div>
+            <div class="mc-features">
+              <span class="mc-feat">KIWA</span>
+              <span class="mc-feat">立型3軸</span>
+              <span class="mc-feat">4軸配線済</span>
+              <span class="mc-feat">Fanuc 10M</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /kiwa grid -->
+    </div><!-- /kiwa section -->
+
+  </div><!-- /content -->
+
+  <!-- ===== SIBLING NAV ===== -->
+  <div class="sibling-row">
+    <a href="nc.html" class="sibling-btn">
+      <div>
+        <div class="s-label">NC旋盤</div>
+        <div class="s-title">CNCターニングセンター</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">5</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+    <a href="do.html" class="sibling-btn">
+      <div>
+        <div class="s-label">測定機器</div>
+        <div class="s-title">精密測定システム</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">2</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Dynamic Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    function filterBrand(brand, btn) {
+      // update buttons
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // show/hide sections
+      document.querySelectorAll('.brand-section').forEach(section => {
+        if (brand === 'all' || section.dataset.brand === brand) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    }
+
+    // animate travel bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.travel-bar-fill').forEach(bar => {
+            const w = bar.style.width;
+            bar.style.width = '0';
+            requestAnimationFrame(() => {
+              setTimeout(() => { bar.style.width = w; }, 100);
+            });
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.machine-card').forEach(card => observer.observe(card));
+  </script>
+
+  <!-- Common Script -->
+  <script src="js/common.js"></script>
+</body>
+
+</html>

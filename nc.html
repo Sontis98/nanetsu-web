@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NC旋盤 設備一覧 | 南越製作所</title>
+  <meta name="description" content="南越製作所のNC旋盤設備一覧。Mazak Quick Turn / Super Quick Turn シリーズ5台の詳細仕様をご確認いただけます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #922b21 0%, #4a1510 100%);
+    }
+
+    .page-hero .breadcrumb,
+    .page-hero .breadcrumb a {
+      color: #f5b7b1;
+    }
+
+    .page-hero h1 .red {
+      color: #fadbd8;
+    }
+
+    /* ===== TYPE TABS ===== */
+    .type-tabs {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      padding: 0 48px;
+      display: flex;
+      gap: 0;
+      position: sticky;
+      top: 77px;
+      z-index: 50;
+    }
+    .type-tab {
+      padding: 20px 28px;
+      font-size: 12px;
+      letter-spacing: .15em;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      color: var(--steel);
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: color .3s;
+      border-bottom: 3px solid transparent;
+    }
+    .type-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--nc-accent);
+      transform: scaleX(0);
+      transition: transform .35s;
+    }
+    .type-tab.active,
+    .type-tab:hover {
+      color: var(--nc-accent);
+    }
+    .type-tab.active::after {
+      transform: scaleX(1);
+    }
+    .tab-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fdf2f2;
+      color: var(--nc-accent);
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .content {
+      padding: 80px 48px;
+    }
+
+    /* ===== MACHINE CARDS GRID ===== */
+    .nc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+    .nc-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all .4s;
+      display: flex;
+      flex-direction: column;
+    }
+    .nc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px -12px rgba(192, 57, 43, .16);
+      border-color: #f5b041;
+    }
+    .nc-image {
+      aspect-ratio: 16/9;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .nc-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s;
+      filter: brightness(.9);
+    }
+    .nc-card:hover .nc-image img {
+      transform: scale(1.05);
+    }
+    .nc-image-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0a0a, #3d1212);
+    }
+    .nc-image-fallback .gear-icon {
+      width: 72px;
+      height: 72px;
+      opacity: .25;
+    }
+    .nc-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .2em;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+    .nc-badge.badge-red {
+      background: #e05625;
+      color: #fff;
+    }
+    .nc-num {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: .1em;
+      z-index: 10;
+    }
+    .nc-body {
+      padding: 28px 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .nc-model {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .nc-type-en {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--nc-accent);
+      letter-spacing: .15em;
+      margin-bottom: 24px;
+    }
+    .nc-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .nc-spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .nc-spec-label {
+      font-size: 11px;
+      color: var(--steel);
+      letter-spacing: .05em;
+    }
+    .nc-spec-val {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nc-features {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .nc-feat {
+      font-size: 10px;
+      background: #fdf2f2;
+      color: var(--nc-accent);
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ===== DIAMETER VISUALIZER ===== */
+    .nc-diameter-vis {
+      background: var(--paper-2);
+      padding: 16px;
+      border-radius: 3px;
+      margin-bottom: 28px;
+    }
+    .diam-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 80px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .diam-row:last-child {
+      margin-bottom: 0;
+    }
+    .diam-label {
+      font-size: 11px;
+      color: var(--steel);
+      letter-spacing: .05em;
+    }
+    .diam-bar-bg {
+      height: 4px;
+      background: rgba(13, 27, 42, .06);
+      border-radius: 2px;
+      position: relative;
+    }
+    .diam-bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--nc-accent);
+      border-radius: 2px;
+      transition: width 0.8s ease-out;
+    }
+    .diam-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--steel);
+      text-align: right;
+    }
+
+    /* ===== HERO WATERMARK ===== */
+    .hero-watermark {
+      position: absolute;
+      right: 48px;
+      bottom: 20px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(100px, 12vw, 180px);
+      font-weight: 800;
+      color: rgba(255, 255, 255, .05);
+      line-height: 1;
+      letter-spacing: -.04em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    /* ===== SPECIFIC NOTE ===== */
+    .nc-note {
+      background: #fdf2f2;
+      border-left: 3px solid var(--nc-accent);
+      padding: 20px 24px;
+      border-radius: 2px;
+      margin-bottom: 40px;
+    }
+    .nc-note-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--nc-accent);
+      font-weight: 700;
+      letter-spacing: .1em;
+      margin-bottom: 4px;
+    }
+    .nc-note p {
+      font-size: 13px;
+      color: var(--steel);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1024px) {
+      .page-hero {
+        padding: 130px 24px 60px;
+      }
+      .type-tabs {
+        padding: 0 24px;
+        top: 73px;
+      }
+      .content {
+        padding: 60px 24px;
+      }
+      .nc-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-watermark {
+        font-size: 100px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <div id="header-placeholder"></div>
+
+  <!-- ===== HERO ===== -->
+  <div class="page-hero">
+    <div class="hero-watermark">旋盤</div>
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>/</span>
+        <a href="tech.html">設備・技術</a>
+        <span>/</span>
+        <span>NC旋盤</span>
+      </div>
+      <h1>NC旋盤<br><span class="red">5台</span>の設備紹介</h1>
+      <p class="page-hero-sub">
+        Mazak Quick Turn シリーズを中心に5台のNC旋盤を保有。シャフト・軸物・テーパ・ねじ切りなど、円筒形状部品の精密加工をトータルサポートします。
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== TYPE TABS ===== -->
+  <div class="type-tabs">
+    <button class="type-tab active" data-type="all" onclick="filterType('all',this)">
+      すべて <span class="tab-count">5</span>
+    </button>
+    <button class="type-tab" data-type="standard" onclick="filterType('standard',this)">
+      標準旋盤 <span class="tab-count">4</span>
+    </button>
+    <button class="type-tab" data-type="multitask" onclick="filterType('multitask',this)">
+      複合旋盤（Y軸・C軸） <span class="tab-count">1</span>
+    </button>
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="content">
+
+    <!-- ALL CARDS in one grid -->
+    <div class="nc-grid">
+
+      <!-- ===== NC 01: QT 300MY (NEW) ===== -->
+      <div class="nc-card" data-type="multitask">
+        <div class="nc-image">
+          <img src="images/machine/machine-nc/Mazak-Quick-Turn-300MY.webp" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            alt="Mazak Quick Turn 300MY">
+          <div class="nc-image-fallback" style="display:none">
+            <svg class="nc-lathe-icon" width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="5" y="30" width="90" height="20" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="12" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="6" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+              <circle cx="20" cy="40" r="2" fill="rgba(200,150,150,.6)" />
+              <rect x="35" y="34" width="50" height="12" rx="2" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+              <line x1="50" y1="20" x2="50" y2="30" stroke="rgba(255,255,255,.3)" stroke-width="1" />
+              <rect x="44" y="10" width="12" height="10" rx="1" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+            </svg>
+          </div>
+          <span class="nc-badge badge-red">MAZAK</span>
+          <span class="nc-badge" style="top:14px;right:14px;left:auto;background:#27ae60;color:#fff;">最新鋭</span>
+          <span class="nc-num" style="top:38px;">NC / No.01</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-model">Quick Turn 300MY</div>
+          <span class="nc-type-en">MULTI-TASK TURNING CENTER / Y-AXIS / C-AXIS / MAZATROL SMOOTH G</span>
+          <div class="nc-diameter-vis">
+            <div class="diam-row">
+              <span class="diam-label">最大旋削径</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:100%"></div>
+              </div>
+              <span class="diam-val">Ø 406 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">最大旋削長</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:93%"></div>
+              </div>
+              <span class="diam-val">965 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">Y軸ストローク</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:18%"></div>
+              </div>
+              <span class="diam-val">±52 mm</span>
+            </div>
+          </div>
+          <div class="nc-specs">
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE SPEED</span>
+              <span class="nc-spec-val big">3,500 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">CHUCK SIZE</span>
+              <span class="nc-spec-val">10インチ</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">BAR CAPACITY</span>
+              <span class="nc-spec-val">Ø 102 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">TURRET</span>
+              <span class="nc-spec-val">12 ステーション</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">MILLING SPEED</span>
+              <span class="nc-spec-val">6,000 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">CONTROL</span>
+              <span class="nc-spec-val">MAZATROL Smooth G</span>
+            </div>
+          </div>
+          <div class="nc-features">
+            <span class="nc-feat highlight">最新鋭機</span>
+            <span class="nc-feat">Y軸複合</span>
+            <span class="nc-feat">Cサーボ軸</span>
+            <span class="nc-feat">ミーリング</span>
+            <span class="nc-feat">NCテールストック</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NC 02: SQT 200 ===== -->
+      <div class="nc-card" data-type="standard">
+        <div class="nc-image">
+          <img src="images/machine/machine-nc/Mazak-Super-Quick-Turn-200.jpg" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            alt="Mazak Super Quick Turn 200">
+          <div class="nc-image-fallback" style="display:none">
+            <svg class="nc-lathe-icon" width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="5" y="30" width="90" height="20" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="12" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="6" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+              <circle cx="20" cy="40" r="2" fill="rgba(200,150,150,.6)" />
+              <rect x="35" y="34" width="50" height="12" rx="2" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+            </svg>
+          </div>
+          <span class="nc-badge badge-red">MAZAK</span>
+          <span class="nc-num">NC / No.02</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-model">Super Quick Turn 200</div>
+          <span class="nc-type-en">CNC TURNING CENTER / 2-AXIS / MAZATROL PC FUSION 640T</span>
+          <div class="nc-diameter-vis">
+            <div class="diam-row">
+              <span class="diam-label">最大旋削径</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:73%"></div>
+              </div>
+              <span class="diam-val">Ø 300 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">最大旋削長</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:56%"></div>
+              </div>
+              <span class="diam-val">534 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">ベッド上振り</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:66%"></div>
+              </div>
+              <span class="diam-val">Ø 525 mm</span>
+            </div>
+          </div>
+          <div class="nc-specs">
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE SPEED</span>
+              <span class="nc-spec-val big">5,000 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE MOTOR</span>
+              <span class="nc-spec-val">18.5 kW</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">X STROKE</span>
+              <span class="nc-spec-val">180 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">Z STROKE</span>
+              <span class="nc-spec-val">575 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">CHUCK</span>
+              <span class="nc-spec-val">8インチ / A2-6</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">TURRET</span>
+              <span class="nc-spec-val">12 ステーション</span>
+            </div>
+          </div>
+          <div class="nc-features">
+            <span class="nc-feat">2軸CNC</span>
+            <span class="nc-feat">高速主軸</span>
+            <span class="nc-feat">テールストック</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NC 03: SQT 18M ===== -->
+      <div class="nc-card" data-type="standard">
+        <div class="nc-image">
+          <img src="images/machine/machine-nc/Mazak-Super-Quick-Turn-18M.webp" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            alt="Mazak Super Quick Turn 18M">
+          <div class="nc-image-fallback" style="display:none">
+            <svg class="nc-lathe-icon" width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="5" y="30" width="90" height="20" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="12" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="6" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+              <circle cx="20" cy="40" r="2" fill="rgba(200,150,150,.6)" />
+              <rect x="35" y="34" width="50" height="12" rx="2" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+            </svg>
+          </div>
+          <span class="nc-badge badge-red">MAZAK</span>
+          <span class="nc-num">NC / No.03</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-model">Super Quick Turn 18M</div>
+          <span class="nc-type-en">CNC TURNING CENTER / LIVE TOOL / MAZATROL T-PLUS</span>
+          <div class="nc-diameter-vis">
+            <div class="diam-row">
+              <span class="diam-label">最大旋削径</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:74%"></div>
+              </div>
+              <span class="diam-val">Ø 300 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">最大旋削長</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:52%"></div>
+              </div>
+              <span class="diam-val">507 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">ベッド上振り</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:65%"></div>
+              </div>
+              <span class="diam-val">Ø 531 mm</span>
+            </div>
+          </div>
+          <div class="nc-specs">
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE SPEED</span>
+              <span class="nc-spec-val big">4,000 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE MOTOR</span>
+              <span class="nc-spec-val">18.5 kW</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">X STROKE</span>
+              <span class="nc-spec-val">180 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">Z STROKE</span>
+              <span class="nc-spec-val">575 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">BAR CAPACITY</span>
+              <span class="nc-spec-val">Ø 64 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">TURRET</span>
+              <span class="nc-spec-val">12 ステーション</span>
+            </div>
+            <div class="nc-spec-item full">
+              <span class="nc-spec-label">MILLING / ROTARY TOOL SPEED</span>
+              <span class="nc-spec-val">120 – 3,000 rpm</span>
+            </div>
+          </div>
+          <div class="nc-features">
+            <span class="nc-feat">ライブツール</span>
+            <span class="nc-feat">Cサーボ軸</span>
+            <span class="nc-feat">ミーリング対応</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NC 04: QT 15N ===== -->
+      <div class="nc-card" data-type="standard">
+        <div class="nc-image">
+          <img src="images/machine/machine-nc/Mazak-Quick-Turn-15N.jfif" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Mazak Quick Turn 15N">
+          <div class="nc-image-fallback" style="display:none">
+            <svg class="nc-lathe-icon" width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="5" y="30" width="90" height="20" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="12" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="6" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+              <circle cx="20" cy="40" r="2" fill="rgba(200,150,150,.6)" />
+              <rect x="35" y="34" width="50" height="12" rx="2" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+            </svg>
+          </div>
+          <span class="nc-badge badge-red">MAZAK</span>
+          <span class="nc-num">NC / No.04</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-model">Quick Turn 15N</div>
+          <span class="nc-type-en">CNC TURNING CENTER / 2-AXIS / MAZATROL T32-2</span>
+          <div class="nc-diameter-vis">
+            <div class="diam-row">
+              <span class="diam-label">最大旋削径</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:74%"></div>
+              </div>
+              <span class="diam-val">Ø 300 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">最大旋削長</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:50%"></div>
+              </div>
+              <span class="diam-val">500 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">ベッド上振り</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:54%"></div>
+              </div>
+              <span class="diam-val">Ø 440 mm</span>
+            </div>
+          </div>
+          <div class="nc-specs">
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE SPEED</span>
+              <span class="nc-spec-val big">4,500 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE MOTOR</span>
+              <span class="nc-spec-val">15 kW (20 HP)</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">X STROKE</span>
+              <span class="nc-spec-val">180 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">Z STROKE</span>
+              <span class="nc-spec-val">510 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">CHUCK</span>
+              <span class="nc-spec-val">8インチ / A2-6</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">TURRET</span>
+              <span class="nc-spec-val">8 ステーション</span>
+            </div>
+            <div class="nc-spec-item full">
+              <span class="nc-spec-label">RAPID TRAVERSE</span>
+              <span class="nc-spec-val">30,000 mm/min (X・Z)</span>
+            </div>
+          </div>
+          <div class="nc-features">
+            <span class="nc-feat">2軸CNC</span>
+            <span class="nc-feat">テールストック</span>
+            <span class="nc-feat">チップコンベア</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NC 05: QT 15 ===== -->
+      <div class="nc-card" data-type="standard">
+        <div class="nc-image">
+          <img src="images/machine/machine-nc/Mazak-Quick-Turn-15.jpg" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Mazak Quick Turn 15">
+          <div class="nc-image-fallback" style="display:none">
+            <svg class="nc-lathe-icon" width="100" height="80" viewBox="0 0 100 80" fill="none">
+              <rect x="5" y="30" width="90" height="20" rx="3" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="12" stroke="rgba(255,255,255,.5)" stroke-width="1" />
+              <circle cx="20" cy="40" r="6" stroke="rgba(255,255,255,.4)" stroke-width="1" />
+              <circle cx="20" cy="40" r="2" fill="rgba(200,150,150,.6)" />
+              <rect x="35" y="34" width="50" height="12" rx="2" stroke="rgba(255,255,255,.3)" stroke-width="0.5" />
+            </svg>
+          </div>
+          <span class="nc-badge badge-red">MAZAK</span>
+          <span class="nc-num">NC / No.05</span>
+        </div>
+        <div class="nc-body">
+          <div class="nc-model">Quick Turn 15</div>
+          <span class="nc-type-en">CNC TURNING CENTER / 2-AXIS / MAZATROL T32</span>
+          <div class="nc-diameter-vis">
+            <div class="diam-row">
+              <span class="diam-label">最大旋削径</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:67%"></div>
+              </div>
+              <span class="diam-val">Ø 265 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">最大旋削長</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:50%"></div>
+              </div>
+              <span class="diam-val">500 mm</span>
+            </div>
+            <div class="diam-row">
+              <span class="diam-label">ベッド上振り</span>
+              <div class="diam-bar-bg">
+                <div class="diam-bar-fill" style="width:55%"></div>
+              </div>
+              <span class="diam-val">Ø 440 mm</span>
+            </div>
+          </div>
+          <div class="nc-specs">
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE SPEED</span>
+              <span class="nc-spec-val big">3,600 rpm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">SPINDLE MOTOR</span>
+              <span class="nc-spec-val">11 kW (15 HP)</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">X STROKE</span>
+              <span class="nc-spec-val">220 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">Z STROKE</span>
+              <span class="nc-spec-val">510 mm</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">CHUCK</span>
+              <span class="nc-spec-val">8インチ / A2-6</span>
+            </div>
+            <div class="nc-spec-item">
+              <span class="nc-spec-label">TURRET</span>
+              <span class="nc-spec-val">8 ステーション</span>
+            </div>
+            <div class="nc-spec-item full">
+              <span class="nc-spec-label">RAPID TRAVERSE</span>
+              <span class="nc-spec-val">12,000 / 24,000 mm/min</span>
+            </div>
+          </div>
+          <div class="nc-features">
+            <span class="nc-feat">2軸CNC</span>
+            <span class="nc-feat">テールストック</span>
+            <span class="nc-feat">多品種小ロット</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /nc-grid -->
+
+  </div><!-- /content -->
+
+  <!-- ===== SIBLING NAV ===== -->
+  <div class="sibling-row">
+    <a href="mc.html" class="sibling-btn">
+      <div>
+        <div class="s-label">MC設備</div>
+        <div class="s-title">マシニングセンター</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">15</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+    <a href="do.html" class="sibling-btn">
+      <div>
+        <div class="s-label">測定機器</div>
+        <div class="s-title">精密測定システム</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="s-count">2</div>
+        <div class="s-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Dynamic Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    function filterType(type, btn) {
+      document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.nc-card').forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // animate bars on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.diam-bar-fill').forEach(bar => {
+            const w = bar.style.width;
+            bar.style.width = '0';
+            requestAnimationFrame(() => setTimeout(() => { bar.style.width = w }, 80));
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.nc-card').forEach(c => obs.observe(c));
+  </script>
+
+  <!-- Common Script -->
+  <script src="js/common.js"></script>
+</body>
+
+</html>
