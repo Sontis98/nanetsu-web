@@ -366,6 +366,17 @@ section {
   border-color: #fff;
 }
 
+/* btn-outline used on light bg (company section) */
+.company .btn-outline {
+  color: var(--sky-700);
+  border-color: var(--sky-300);
+}
+
+.company .btn-outline:hover {
+  background: var(--sky-50);
+  border-color: var(--sky-500);
+}
+
 .btn-submit {
   width: 100%;
   background: var(--sky-700);
@@ -2611,5 +2622,218 @@ a.tech-item:hover .tech-name {
   /* Team full grid */
   .team-full-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Nav CTA hidden on mobile — it's in mobile menu */
+  .nav-cta {
+    display: none;
+  }
+
+  /* Service cards */
+  .service {
+    padding: 32px 24px;
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+  }
+
+  .service h3 {
+    font-size: 20px;
+  }
+
+  /* Tech section — hide decorative visual panel */
+  .tech-visual {
+    display: none;
+  }
+
+  .tech-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .tech-item {
+    padding: 20px 0;
+    gap: 16px;
+  }
+
+  /* Info table */
+  .info-table th {
+    width: 35%;
+    font-size: 12px;
+  }
+
+  .info-table td {
+    font-size: 13px;
+  }
+
+  /* Contact */
+  .contact h2 {
+    font-size: clamp(30px, 7.5vw, 44px);
+  }
+
+  .contact p {
+    font-size: 14px;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: clamp(36px, 9vw, 56px);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+  }
+
+  /* Gallery overlay */
+  .gallery-overlay {
+    font-size: 9px;
+  }
+
+  /* Flow CTA */
+  .flow-cta-row .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: clamp(28px, 7vw, 44px);
+  }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE — 480px and below (small phones)
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Gallery 1-column */
+  .gallery-layout {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Stats compact */
+  .stat {
+    padding: 24px 16px;
+  }
+
+  .stat-num {
+    font-size: 36px;
+  }
+
+  /* Hero — hide decorative visual on tiny screens */
+  .hero {
+    padding: 88px 16px 56px;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .hero-cta {
+    gap: 16px;
+  }
+
+  /* Section spacing */
+  section {
+    padding: 60px 16px;
+  }
+
+  /* About */
+  .about-img {
+    aspect-ratio: 16/9;
+    max-height: 220px;
+  }
+
+  /* Services */
+  .services-grid {
+    gap: 16px;
+  }
+
+  .service {
+    padding: 26px 18px;
+  }
+
+  /* Company */
+  .map-container {
+    min-height: 220px;
+  }
+
+  /* Contact */
+  .contact {
+    padding: 60px 16px;
+  }
+
+  .btn-white {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+    font-size: 13px;
+  }
+
+  /* Modal — slide up from bottom on small screens */
+  .modal-overlay {
+    align-items: flex-end;
+  }
+
+  .modal {
+    padding: 32px 16px 40px;
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    max-height: 92dvh;
+  }
+
+  /* Form */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Footer */
+  footer {
+    padding: 48px 16px 20px;
+  }
+
+  .footer-top {
+    gap: 32px;
+  }
+
+  /* Nav */
+  nav {
+    padding: 12px 16px;
+  }
+
+  .logo-jp {
+    font-size: 14px;
+  }
+
+  .logo-en {
+    display: none;
+  }
+
+  /* Sibling buttons */
+  .sibling-row {
+    padding: 0 16px 48px;
+    gap: 12px;
+  }
+
+  .sibling-btn {
+    padding: 18px 16px;
+  }
+
+  .sibling-btn .s-count {
+    font-size: 28px;
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding: 88px 16px 40px;
+  }
+
+  /* Section head */
+  .section-head {
+    margin-bottom: 36px;
   }
 }
