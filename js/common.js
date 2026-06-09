@@ -4,13 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     highlightActivePage();
     initContactModal();
     initScrollNavbar();
+    initHamburgerMenu();
   });
 
   // Init scroll reveal animations
   initScrollReveal();
-
-  // Init hamburger menu
-  initHamburgerMenu();
 });
 
 function loadHeader() {
