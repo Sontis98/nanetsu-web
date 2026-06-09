@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0e4373;
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    position: relative;
+  }
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  /* Blue accent bar left */
+  .bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(180deg, #4aa8ec, #2389d4);
+  }
+  /* Content */
+  .wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px 60px 100px;
+  }
+  .tag {
+    font-size: 13px;
+    letter-spacing: .35em;
+    color: #7ec4f5;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #4aa8ec;
+  }
+  h1 {
+    font-size: 54px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: .03em;
+    margin-bottom: 24px;
+  }
+  h1 span { color: #7ec4f5; }
+  .sub {
+    font-size: 18px;
+    color: rgba(255,255,255,.72);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .badges {
+    display: flex;
+    gap: 16px;
+  }
+  .badge {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 13px;
+    letter-spacing: .08em;
+    border-radius: 2px;
+  }
+  /* Right decorative panel */
+  .deco {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: rgba(255,255,255,.04);
+  }
+  .deco-kanji {
+    font-size: 96px;
+    font-weight: 900;
+    color: rgba(255,255,255,.15);
+    line-height: 1;
+    font-family: 'Shippori Mincho', 'YuMincho', serif;
+  }
+  .deco-en {
+    font-size: 10px;
+    letter-spacing: .3em;
+    color: rgba(255,255,255,.35);
+  }
+  /* Corner specs */
+  .spec {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: rgba(255,255,255,.3);
+    line-height: 1.6;
+  }
+  .spec.tl { top: 20px; left: 24px; }
+  .spec.br { bottom: 20px; right: 24px; text-align: right; }
+  /* Tolerance badge */
+  .tolerance {
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+    font-size: 11px;
+    color: #7ec4f5;
+    letter-spacing: .2em;
+    text-align: center;
+  }
+  .tolerance span {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bar"></div>
+  <div class="spec tl">NANETSU CO.,Ltd.<br>OSAKA / HIGASHIOSAKA</div>
+  <div class="spec br">〒577-0824 大阪府東大阪市大蓮南5丁目10-8<br>TEL : 06-6727-7866</div>
+
+  <div class="wrap">
+    <div class="tag">PRECISION MACHINING</div>
+    <h1>精密機械加工<br><span>株式会社南越製作所</span></h1>
+    <p class="sub">マシニングセンター15台・NC旋盤5台<br>大阪・東大阪より、世界基準の精密加工を。</p>
+    <div class="badges">
+      <div class="badge">±0.01mm 精度</div>
+      <div class="badge">多品種小ロット〜量産</div>
+      <div class="badge">24時間以内見積り</div>
+    </div>
+  </div>
+
+  <div class="deco">
+    <div class="deco-kanji">南越</div>
+    <div class="deco-en">EST. 2007 / OSAKA</div>
+  </div>
+</body>
+</html>
