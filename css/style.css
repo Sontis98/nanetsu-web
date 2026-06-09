@@ -1935,7 +1935,17 @@ a.tech-item:hover .tech-name {
   }
 
   .gallery-layout {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .gallery-layout::-webkit-scrollbar { display: none; }
+  .gallery-item {
+    flex: 0 0 56vw;
+    scroll-snap-align: start;
   }
 }
 
@@ -2708,10 +2718,20 @@ a.tech-item:hover .tech-name {
    MOBILE RESPONSIVE — 480px and below (small phones)
    ========================================================================== */
 @media (max-width: 480px) {
-  /* Gallery 1-column */
+  /* Gallery horizontal scroll on mobile */
   .gallery-layout {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     gap: 8px;
+    padding-bottom: 8px;
+  }
+  .gallery-layout::-webkit-scrollbar { display: none; }
+  .gallery-item {
+    flex: 0 0 72vw;
+    scroll-snap-align: start;
   }
 
   /* Stats compact */
