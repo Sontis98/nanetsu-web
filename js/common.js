@@ -65,15 +65,19 @@ function initScrollNavbar() {
   const nav = document.querySelector("nav");
   if (!nav) return;
 
-  window.addEventListener("scroll", () => {
+  function updateNavPadding() {
+    const isMobile = window.innerWidth <= 1024;
     if (window.scrollY > 50) {
-      nav.style.padding = "12px 48px";
+      nav.style.padding = isMobile ? "10px 20px" : "12px 48px";
       nav.style.boxShadow = "0 4px 20px rgba(13,27,42,.06)";
     } else {
-      nav.style.padding = "18px 48px";
+      nav.style.padding = isMobile ? "16px 24px" : "18px 48px";
       nav.style.boxShadow = "none";
     }
-  }, { passive: true });
+  }
+
+  window.addEventListener("scroll", updateNavPadding, { passive: true });
+  window.addEventListener("resize", updateNavPadding, { passive: true });
 }
 
 function initContactModal() {
